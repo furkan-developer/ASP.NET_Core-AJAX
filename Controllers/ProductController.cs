@@ -28,8 +28,8 @@ namespace AJAX.Controllers
 
         [HttpGet]
         public IActionResult GetCommnetsByProduct()
-        {   
-            return Json(data:_comments);
+        {
+            return Json(data: _comments);
         }
     }
 }
