@@ -1,7 +1,16 @@
+using AJAX.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton(new List<CommentViewModel>()
+{
+    new CommentViewModel(){CustomerName="Furkan Aydın",Comment="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam molestias vitae omnis. Quidem corporis illum recusandae debitis harum architecto modi odit assumenda perferendis alias eveniet rerum neque, maiores provident ipsum?"},
+
+    new CommentViewModel(){CustomerName="Ali Veli",Comment="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam molestias vitae omnis."},
+});
 
 var app = builder.Build();
 
