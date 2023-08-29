@@ -3,6 +3,28 @@
 @section Scripts{
     <script>
         $(document).ready(function () {
+            document.getElementById("addComment").addEventListener("click", () => {
+                let comment = document.getElementById("comment").value;
+                if (comment == "") {
+                    alert("Comment is not empty!");
+                    return;
+                }
+
+                $.ajax({
+                    url: "/Product/AddCommentToProduct",
+                    type: "POST",
+                    data: {"comment":comment},
+                    success: function (isSucces) {
+                        if (isSucces) {
+                            showComments();
+                        }
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+                console.log(comment);
+            });
 
             showComments();
 
@@ -13,6 +35,9 @@
                     success: function (data) {
                         console.log(data);
                         let commentsWrapper = $("#comments");
+                        if(commentsWrapper.children().get().length > 0){
+                            commentsWrapper.empty();
+                        }
                         data.forEach((item, index) => {
                             commentsWrapper.append(`
                                 <div class="card my-2">
@@ -39,6 +64,13 @@
         <h5 class="card-title">@Model.Name</h5>
         <p class="card-text"><b>Quantity:</b> @Model.Quantity</p>
         <p class="card-text"><b>Quantity:</b> @Model.Price</p>
+    </div>
+    <div class="card-footer">
+        <div class="form-floating">
+            <textarea id="comment" class="form-control" placeholder="Leave a comment here"></textarea>
+            <label for="comment">Comments</label>
+        </div>
+        <button id="addComment" type="button" class="btn btn-primary mt-2">Add Comment</button>
     </div>
 </div>
 

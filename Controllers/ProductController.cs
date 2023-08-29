@@ -31,5 +31,14 @@ namespace AJAX.Controllers
         {
             return Json(data: _comments);
         }
+
+        [HttpPost]
+        public IActionResult AddCommentToProduct(string comment)
+        {
+            var productComment = new CommentViewModel() { CustomerName = "Furkan Aydın", Comment = comment };
+            _comments.Add(productComment);
+
+            return Json(data: new { isSuccess = true });
+        }
     }
 }
