@@ -2,8 +2,24 @@
     <script>
         $(document).ready(() => {
             $("#saveProduct").click((e) => {
+                const form = new FormData();
+                form.append("Name",$("#productName").val());
+                form.append("Price",$("#productPrice").val());
+                form.append("Quantity",$("#productQuantity").val());
+
                 $.ajax({
-                    // configure request settings.
+                    type: "POST",
+                    url: "/Product/InsertProduct",
+                    data: form,
+                    processData: false,
+                    contentType: false,
+
+                    success: (data) => {
+                        console.log(data);
+                    },
+                    error: (e) => {
+                        console.log("Erorr occured: " + e);
+                    }
                 });
             });
         });
