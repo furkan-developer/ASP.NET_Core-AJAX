@@ -1,0 +1,28 @@
+@section Scripts{
+    <script>
+        $(document).ready(() => {
+            $("#saveProduct").click((e) => {
+                $.ajax({
+                    // configure request settings.
+                });
+            });
+        });
+    </script>
+}
+
+
+<div class="product-form-wrapper">
+    <div class="mb-3">
+        <label for="productName" class="form-label">Email address</label>
+        <input type="text" class="form-control" id="productName" placeholder="Name">
+    </div>
+    <div class="mb-3">
+        <label for="productPrice" class="form-label">Price</label>
+        <input type="number" step=".01" min="0" class="form-control" id="productPrice" placeholder="Price">
+    </div>
+    <div class="mb-3">
+        <label for="productQuantity" class="form-label">Quantity</label>
+        <input type="number" min="0" class="form-control" id="productQuantity" placeholder="Quantity">
+    </div>
+    <button id="saveProduct" class="btn btn-primary">Save</button>
+</div>
