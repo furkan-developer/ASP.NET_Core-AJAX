@@ -1,19 +1,19 @@
 @section Scripts{
     <script>
         $(document).ready(() => {
-            $("#saveProduct").click((e) => {
-                const form = new FormData();
-                form.append("Name",$("#productName").val());
-                form.append("Price",$("#productPrice").val());
-                form.append("Quantity",$("#productQuantity").val());
+            // Gets HTMLFormElement by using form element's name attribute
+            const formElement = document.forms.namedItem("saveProduct");
+            
+            formElement.addEventListener("submit",(e)=>{
+                e.preventDefault();
 
+                const form = new FormData(formElement);
                 $.ajax({
                     type: "POST",
                     url: "/Product/InsertProduct",
                     data: form,
                     processData: false,
                     contentType: false,
-
                     success: (data) => {
                         console.log(data);
                     },
@@ -26,19 +26,24 @@
     </script>
 }
 
-
 <div class="product-form-wrapper">
-    <div class="mb-3">
-        <label for="productName" class="form-label">Email address</label>
-        <input type="text" class="form-control" id="productName" placeholder="Name">
-    </div>
-    <div class="mb-3">
-        <label for="productPrice" class="form-label">Price</label>
-        <input type="number" step=".01" min="0" class="form-control" id="productPrice" placeholder="Price">
-    </div>
-    <div class="mb-3">
-        <label for="productQuantity" class="form-label">Quantity</label>
-        <input type="number" min="0" class="form-control" id="productQuantity" placeholder="Quantity">
-    </div>
-    <button id="saveProduct" class="btn btn-primary">Save</button>
+    <form name="saveProduct">
+        <div class="mb-3">
+            <label for="Name" class="form-label">Email address</label>
+            <input type="text" class="form-control" id="Name" name="Name" placeholder="Name">
+        </div>
+        <div class="mb-3">
+            <label for="Price" class="form-label">Price</label>
+            <input type="number" step=".01" min="0" class="form-control" id="Price" name="Price" placeholder="Price">
+        </div>
+        <div class="mb-3">
+            <label for="Quantity" class="form-label">Quantity</label>
+            <input type="number" min="0" class="form-control" id="Quantity" name="Quantity" placeholder="Quantity">
+        </div>
+        <div class="mb-3">
+            <label for="File" class="form-label">Quantity</label>
+            <input type="file" class="form-control" id="File" name="File">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
 </div>

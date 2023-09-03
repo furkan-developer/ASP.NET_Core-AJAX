@@ -20,3 +20,49 @@
 
 - **ProcessData'yı** false olarak ayarlamak, jQuery'nin verileri otomatik olarak bir sorgu dizesine dönüştürmesini önlemenizi sağlar.
 - **ContentType'ın** false olarak ayarlanması zorunludur, aksi takdirde jQuery onu yanlış ayarlayacaktır.
+
+## FormData Object
+```javascript
+<script>
+    $(document).ready(() => {
+        ...
+        formElement.addEventListener("submit",(e)=>{
+            e.preventDefault();
+
+            const form = new FormData(formElement);
+        ...
+        });
+    });
+</script>
+```
+
+Yukarıdaki kodda form elementinin submit event i tetiklendiğinde **e.preventDefault()** statement ı ile varsayılan form gönderimi engellenir. Daha sonra **formdata event** ini tetiklemek için bir **FormData** object oluşturulur. Bu object ile requst oluşturulur ve web server a gönderilir. Örnek kodda JQuery.ajax() fonksiyonunun sağladığı AJAX yöntemi ile request oluşturulur. Eğer Fetch API ile bir request oluşturulsaydı yine e.preventDefault() fonksiyonu ile varsayılan form gönderimi engellenilecekti.
+
+- **event.preventDefault()** fonksiyonu, ilgili event iptal edilebilir ise bu event iptal edilir. Yani event tetiklendiğinde bir action gerçekleşecek ise bu iptal edilecektir. Örneğin şu senaryolarda kullanışlı olabilir:
+    - Type ı **submit** olan butona tıklandığında, formun gönderilmesi engellenir.
+    - Bir linke click olunduğunda, URL e yönlendirme engellenir.
+
+**Note:** Her event iptal edilemez. Bir event in iptal edilebilir olduğunu öğrenmek için **cancelable** property kullanılabilir. 
+
+```javascript
+    // return true or default
+    event.cancelable;
+```
+
+### FormData Methods
+Aşağıdaki fonksiyonlar ile FormData object deki field lar üzerinde değişiklik yapılabilir.
+- **FormData.append(name,value),** name ve value parametrelerinin değerleri ile bir form field ekler.
+- **FormData.append(name,blob,fileName),** <input type="file"> gibi bir form field ekler. Üçüncü parametre olan fileName, eğer form field bir isme sahip değil ise dosyaya bir isim ayarlar.
+- **FormData.delete(name),** name parametresinin değerine göre ilişkili form field silinir.
+- **FormData.get(name),** name parametresinin değerine göre ilişkili form field ın değeri döndürülür.
+- **FormData.getAll(name),** name parametresinin değerine göre ilişkili tüm form field ların değerleri bir array ile döndürülür.
+- **FormData.has(name),** eğer name parametresinin değerine göre bir form field var ise **true** yok ise **false** döner.
+- **FormData.keys(),** FormData object deki tüm key/value çiftlerinin key değerlerini yani form field ların değerlerini döner. 
+- **FormData.values(),** FormData object deki tüm key/value çiftlerinin value değerlerini yani form field ların değerleri döner.  
+- **FormData.entries(),** FormData object deki tüm key/value çiftlerini bir dizi ile döner.
+- **FormData.set(name,value),** eğer name değeri ile ilişkili bir field var ise value parametresinin değeri ile değiştirir, eğer yok ise field ı ekler ve değerini atar.
+
+## Kaynaklar
+- [https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects#using_a_formdata_event](https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects#using_a_formdata_event)
+- [https://developer.mozilla.org/en-US/docs/Web/API/FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
+
