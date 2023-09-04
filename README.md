@@ -62,6 +62,42 @@ Aşağıdaki fonksiyonlar ile FormData object deki field lar üzerinde değişik
 - **FormData.entries(),** FormData object deki tüm key/value çiftlerini bir dizi ile döner.
 - **FormData.set(name,value),** eğer name değeri ile ilişkili bir field var ise value parametresinin değeri ile değiştirir, eğer yok ise field ı ekler ve değerini atar.
 
+## Convert an Object to FormData
+**Object.entries()**, alınan bir object in key/value çiftlerinin dizisini döner.
+
+```javascript
+const employee = {
+    id: 1,
+    first: 'furkan',
+    last: 'AYDIN',
+    age: 23 ,
+    tasks: ['develop', 'test', 'ship'],
+};
+
+console.log(Object.entries(employee));
+```
+**Output:**
+
+![alt text](./wwwroot/img/1.jpg)
+
+Object.entries() fonksiyonundan dönen datalar üzerinde daha kolay iterasyon yapabilmek için [destructuring assignment expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) kullanılabilir.
+
+```javascript
+const employee = {
+    id: 1,
+    first: 'furkan',
+    last: 'AYDIN',
+    age: 23,
+};
+
+Object.entries(employee).forEach(([key, value]) => {
+    console.log("key/value:  " + key + "/" + value);
+});
+```
+**Output:**
+
+![alt text](./wwwroot/img/2.jpg)
+
 ## Kaynaklar
 - [https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects#using_a_formdata_event](https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects#using_a_formdata_event)
 - [https://developer.mozilla.org/en-US/docs/Web/API/FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)

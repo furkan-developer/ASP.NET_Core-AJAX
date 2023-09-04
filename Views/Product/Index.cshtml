@@ -1,13 +1,20 @@
 @section Scripts{
     <script>
         $(document).ready(() => {
-            // Gets HTMLFormElement by using form element's name attribute
-            const formElement = document.forms.namedItem("saveProduct");
-            
-            formElement.addEventListener("submit",(e)=>{
-                e.preventDefault();
 
-                const form = new FormData(formElement);
+            $("#saveProduct").on("click", (e) => {
+                const product = {
+                    "name": "Computer",
+                    "price": 12000,
+                    "quantity": 5,       
+                };
+
+                const form = new FormData();
+
+                Object.entries(product).forEach(([key, value]) => {
+                    form.append(key,value);
+                });
+
                 $.ajax({
                     type: "POST",
                     url: "/Product/InsertProduct",
@@ -26,24 +33,6 @@
     </script>
 }
 
-<div class="product-form-wrapper">
-    <form name="saveProduct">
-        <div class="mb-3">
-            <label for="Name" class="form-label">Email address</label>
-            <input type="text" class="form-control" id="Name" name="Name" placeholder="Name">
-        </div>
-        <div class="mb-3">
-            <label for="Price" class="form-label">Price</label>
-            <input type="number" step=".01" min="0" class="form-control" id="Price" name="Price" placeholder="Price">
-        </div>
-        <div class="mb-3">
-            <label for="Quantity" class="form-label">Quantity</label>
-            <input type="number" min="0" class="form-control" id="Quantity" name="Quantity" placeholder="Quantity">
-        </div>
-        <div class="mb-3">
-            <label for="File" class="form-label">Quantity</label>
-            <input type="file" class="form-control" id="File" name="File">
-        </div>
-        <button type="submit" class="btn btn-primary">Save</button>
-    </form>
+<div class="save-product-wrapper">
+   <button id="saveProduct" type="button" class="btn btn-primary">Save Product</button>
 </div>
