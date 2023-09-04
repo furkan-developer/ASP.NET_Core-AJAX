@@ -98,6 +98,12 @@ Object.entries(employee).forEach(([key, value]) => {
 
 ![alt text](./wwwroot/img/2.jpg)
 
+## Fetch API
+Modern browserlar JQuery.ajax() fonksiyonu ile XMLHttpRequest object üzerinde çalışarak AJAX request oluşturmak yerine Fetch API kullanabilirler. Fetch API, AJAX gibi web serverlara HTTP request oluşturmak için browserlara izin verir. Ancak Fetch API XMLHttpRequest objesine göre daha güçlü ve esnek bir yapıya sahiptir.
+
+- https://javascript.info/formdata](https://javascript.info/formdata)
+- [https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-7.0](https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads?view=aspnetcore-7.0)
+
 ## Kaynaklar
 - [https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects#using_a_formdata_event](https://developer.mozilla.org/en-US/docs/Web/API/FormData/Using_FormData_Objects#using_a_formdata_event)
 - [https://developer.mozilla.org/en-US/docs/Web/API/FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
