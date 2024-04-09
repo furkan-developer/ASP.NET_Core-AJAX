@@ -1,62 +1,9 @@
 @model Product
 
-@section Scripts{
-    <script>
-        $(document).ready(function () {
-            document.getElementById("addComment").addEventListener("click", () => {
-                let comment = document.getElementById("comment").value;
-                if (comment == "") {
-                    alert("Comment is not empty!");
-                    return;
-                }
-
-                $.ajax({
-                    url: "/Product/AddCommentToProduct",
-                    type: "POST",
-                    data: {"comment":comment},
-                    success: function (isSucces) {
-                        if (isSucces) {
-                            showComments();
-                        }
-                    },
-                    error: function (e) {
-                        console.log(e);
-                    }
-                });
-                console.log(comment);
-            });
-
-            showComments();
-
-            function showComments() {
-                $.ajax({
-                    url: "/Product/GetCommnetsByProduct",
-                    type: "GET",
-                    success: function (data) {
-                        console.log(data);
-                        let commentsWrapper = $("#comments");
-                        if(commentsWrapper.children().get().length > 0){
-                            commentsWrapper.empty();
-                        }
-                        data.forEach((item, index) => {
-                            commentsWrapper.append(`
-                                <div class="card my-2">
-                                    <div class="card-header">
-                                        `+ item.customerName + ` 
-                                    </div>
-                                    <div class="card-body">
-                                        <p class="card-text">`+ item.comment + ` </p>
-                                    </div>
-                                </div>`)
-                        });
-                    },
-                    error: function (e) {
-                        console.log(e);
-                    }
-                });
-            }
-        });
-    </script>
+@section Scripts {
+     @* client side SignalR library *@
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/comments.js"></script>
 }
 
 <div class="card">
@@ -80,5 +27,3 @@
         <div id="comments"></div>
     </div>
 </div>
-
-

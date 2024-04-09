@@ -1,3 +1,4 @@
+using AJAX.Hubs;
 using AJAX.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,8 @@ builder.Services.AddSingleton(new List<CommentViewModel>()
 
     new CommentViewModel(){CustomerName="Ali Veli",Comment="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam molestias vitae omnis."},
 });
+
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -32,5 +35,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+ 
+app.MapHub<CommentHub>("/commentHub");
 
 app.Run();
